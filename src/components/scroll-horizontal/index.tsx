@@ -1,25 +1,25 @@
 import { emptyFunc } from "@/utils";
 import React, { useEffect, useMemo, useRef } from "react"
 import Scroll from "../scroll";
-import { HorizentalStyle, ListItemStyle, ListStyle } from "./style";
+import { HorizontalStyle, ListItemStyle, ListStyle } from "./style";
 
-interface HorizentalProps<DataType> {
+interface HorizontalProps<DataType> {
   title?: string | React.ReactElement;
   dataSource: DataType[] | any[];
   currentValue?: string;
   onClick?: (key: string) => void;
 }
 
-function Horizental<DataType>(props: HorizentalProps<DataType>) {
+function Horizontal<DataType>(props: HorizontalProps<DataType>) {
   const { title, dataSource, currentValue, } = props;
   const { onClick = emptyFunc } = props;
-  const horizentalDom = useRef<any>()
-
+  // 内层滚动dom
+  const horizontalDom = useRef<any>()
+  // 默认选中
   const defaultValue = useMemo(() => currentValue || dataSource[0].key, [currentValue, dataSource])
-
   // 内部dom按照生成list计算
   useEffect(() => {
-    let dom = horizentalDom.current;
+    let dom = horizontalDom.current;
     let tagElements = dom.querySelectorAll('span');
     let totalWidth = 0;
     Array.from(tagElements).forEach((ele: any) => {
@@ -29,7 +29,7 @@ function Horizental<DataType>(props: HorizentalProps<DataType>) {
   })
   return (
     <Scroll direction="horizontal">
-      <HorizentalStyle ref={horizentalDom}>
+      <HorizontalStyle ref={horizontalDom}>
         <h1 className="title">{title}</h1>
         <ListStyle>
           {
@@ -46,9 +46,9 @@ function Horizental<DataType>(props: HorizentalProps<DataType>) {
             })
           }
         </ListStyle>
-      </HorizentalStyle>
+      </HorizontalStyle>
     </Scroll>
   )
 }
 
-export default Horizental
+export default Horizontal

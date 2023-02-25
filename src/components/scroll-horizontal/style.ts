@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import global from '@/assets/style/global-style';
-export const HorizentalStyle = styled.div`
+export const HorizontalStyle = styled.div`
   display: flex;
   align-items: center;
   .title {

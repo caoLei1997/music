@@ -4,49 +4,43 @@
  * @LastEditTime: 2023-02-24 14:12:34
  */
 // import Slider from '@/components/slider'
-import Slider from '@/components/slider-9x';
-import Scroll from '@/components/scroll';
-import RecommendList from './recommend-list';
-import { RecommendStyle } from './style';
-import { forceCheck } from 'react-lazyload';
-
-export interface RecommendListItem {
-  id: number,
-  picUrl: string;
-  playCount: number;
-  name: string
-}
+import Slider from "@/components/slider-9x";
+import Scroll from "@/components/scroll";
+import RecommendList from "./recommend-list";
+import { RecommendStyle } from "./style";
+import { forceCheck } from "react-lazyload";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getBanner, getRecommendList } from "./store/action";
 
 const Recommend = () => {
-  // banner data
-  const bannerList = [1, 2, 3, 4].map(item => {
-    return {
-      imageUrl: "http://p1.music.126.net/ZYLJ2oZn74yUz5x8NBGkVA==/109951164331219056.jpg"
-    }
-  });
-  // list data
-  const recommendList: RecommendListItem[] = new Array(10)
-    .fill(1)
-    .map(item => {
-      return {
-        id: 1,
-        picUrl: "https://p1.music.126.net/fhmefjUfMD-8qtj3JKeHbA==/18999560928537533.jpg",
-        playCount: 17171122,
-        name: "朴树、许巍、李健、郑钧、老狼、赵雷"
-      }
-    })
+
+  const dispatch = useDispatch();
+  
+  useEffect(() => {
+    dispatch(getBanner());
+    dispatch(getRecommendList());
+  }, []);
+
+  const {bannerList,recommendList} = useSelector((state:any) => ({
+    bannerList: state.getIn(["recommend", "bannerList"]),
+    recommendList: state.getIn(["recommend", "recommendList"]),
+  }));
+  //banner data 
+  const bannerListJS = bannerList ? bannerList.toJS():[]
+  //recommend data 
+  const recommendListJS = recommendList ? recommendList.toJS():[]
 
   return (
     <RecommendStyle>
       <Scroll onScroll={forceCheck}>
         <div>
-          <Slider dataSource={bannerList} />
-          <RecommendList dataSource={recommendList} />
+          <Slider dataSource={bannerListJS} />
+          <RecommendList dataSource={recommendListJS} />
         </div>
       </Scroll>
-
     </RecommendStyle>
-  )
-}
+  );
+};
 
-export default Recommend
+export default Recommend;

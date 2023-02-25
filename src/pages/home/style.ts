@@ -1,12 +1,12 @@
-import styled from 'styled-components';
-import global from '@/assets/style/global-style';
+import styled from "styled-components";
+import global from "@/assets/style/global-style";
 
 export const HeaderStyle = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   padding: 5px 10px;
-  background-color: ${global['theme-color']};
+  background-color: ${global["theme-color"]};
   & > span {
     line-height: 40px;
     color: #f1f1f1;
@@ -18,9 +18,11 @@ export const HeaderStyle = styled.div`
 `;
 
 export const TabStyle = styled.div`
-  ${global?.flexDesign('space-around')};
+  ${global?.flexDesign("space-around")};
   height: 44px;
-  background-color: ${global['theme-color']};
+  background-color: ${global["theme-color"]};
+  position: relative;
+  z-index: 99;
   a {
     flex: 1;
     padding: 2px 0;

@@ -5,17 +5,17 @@
  * @Description: swiper 9x
  */
 
-import React from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, Pagination, Navigation } from 'swiper'
 // Import Swiper styles
 import 'swiper/css/bundle';
 import { SliderStyle } from './style';
+import { BannerListItem } from '@/pages/recommend/interface';
 
 const swiperPlugin = [Autoplay, Pagination, Navigation]
 
 interface SliderProps {
-  dataSource: { imageUrl: string }[]
+  dataSource: BannerListItem[]
 }
 const Slider9X = (props: SliderProps) => {
   const { dataSource } = props;
