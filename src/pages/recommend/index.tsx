@@ -22,7 +22,7 @@ const Recommend = () => {
     recommendList: state.getIn(["recommend", "recommendList"]),
     loading: state.getIn(["recommend", "loading"]),
   }));
-  
+
   useEffect(() => {
     if (!bannerList.size) {
       dispatch(getBanner());
@@ -45,7 +45,7 @@ const Recommend = () => {
           <RecommendList dataSource={recommendListJS} />
         </div>
       </Scroll>
-      {loading ? <Loading /> : null}
+      <Loading show={loading} />
     </RecommendStyle>
   );
 };

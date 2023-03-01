@@ -1,6 +1,6 @@
 import { getCount } from '@/utils'
 import LazyLoad from 'react-lazyload'
-import { RecommendListItem } from '..'
+import { RecommendListItem } from '../interface'
 import { ListItemStyled, ListStyled, ListWrapperStyled } from './styled'
 
 import defaultImg from '@/assets/image/music.png'

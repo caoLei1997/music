@@ -23,7 +23,7 @@ export const requestHotSingersList = (count: number) => {
 // 歌手列表
 export const requestSingersList = (singerListParams?: SingerListParams) => {
   const { category = "", count = 0, alpha = "" } = singerListParams || {};
-  const { type, area } = categoryMap.get(category) || {};
+  const { type = "", area = "" } = categoryMap.get(category) || {};
   return axiosInstance.get<any, any>(
     `/artist/list?type=${type}&area=${area}&initial=${alpha.toLowerCase()}&offset=${count}`
   );

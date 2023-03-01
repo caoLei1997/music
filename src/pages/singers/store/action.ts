@@ -88,7 +88,7 @@ export const getMoreSingerList = (category: string, alpha: string): any => {
       count,
     })
       .then(({ artists }) => {
-        const data = [...singerList, artists];
+        const data = [...singerList, ...artists];
         dispatch(changeSingerList(data));
         dispatch(changePullUpLoading(false));
       })

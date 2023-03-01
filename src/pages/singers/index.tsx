@@ -3,17 +3,20 @@ import Scroll from "@/components/scroll";
 import Horizontal from "@/components/scroll-horizontal";
 import { useEffect, useMemo, useState } from "react";
 import SingersList from "./singers-list";
+import { forceCheck } from 'react-lazyload'
 import { ListContainer, SingersStyle } from "./style";
 import {
   changeCount,
   changeLoading,
   changePullDownLoading,
+  changePullUpLoading,
   getHotSingerList,
   getMoreHotSingerList,
   getMoreSingerList,
   getSingerList,
 } from "./store/action";
 import { useDispatch, useSelector } from "react-redux";
+import Loading from "@/components/loading";
 
 const Singers = () => {
   const dispatch = useDispatch();
@@ -34,7 +37,7 @@ const Singers = () => {
   const updateSingerList = (category: string, alpha: string) => {
     dispatch(changeCount(0));
     dispatch(changeLoading(true));
-    dispatch(getSingerList(category,alpha));
+    dispatch(getSingerList(category, alpha));
   };
 
   // 歌手分类
@@ -49,10 +52,14 @@ const Singers = () => {
   };
 
   // store 数据源
-  const { singerList, count } = useSelector((state: any) => ({
-    singerList: state.getIn(["singers", "singerList"]).toJS() || [],
-    count: state.getIn(["singers", "count"]),
-  }));
+  const { singerList, count, loading, pullUpLoading, pullDownLoading } =
+    useSelector((state: any) => ({
+      singerList: state.getIn(["singers", "singerList"]).toJS() || [],
+      count: state.getIn(["singers", "count"]),
+      loading: state.getIn(["singers", "loading"]),
+      pullUpLoading: state.getIn(["singers", "pullUpLoading"]),
+      pullDownLoading: state.getIn(["singers", "pullDownLoading"]),
+    }));
 
   // 分类首字母都没有选择 默认热门
   const { hot } = useMemo(
@@ -70,16 +77,15 @@ const Singers = () => {
     // 分页归 0
     dispatch(changeCount(0));
     // 加载更多, 热门歌手 或  类型歌手
-    if (hot) dispatch(getMoreHotSingerList());
-    else dispatch(getMoreSingerList(categoryValue, alphaValue));
+    if (hot) dispatch(getHotSingerList());
+    else dispatch(getSingerList(categoryValue, alphaValue));
   };
 
   // 上拉加载
   const handlePullUp = () => {
-    console.log("上拉加载");
-    console.log("categoryValue: ", categoryValue);
+    console.log("上拉加载")
     // 上拉加载loading
-    dispatch(changeLoading(true));
+    dispatch(changePullUpLoading(true));
     // 页数增加
     dispatch(changeCount(count + 1));
     // 加载更多, 热门歌手 或  类型歌手
@@ -101,10 +107,17 @@ const Singers = () => {
         onClick={updateAlpha}
       />
       <ListContainer>
-        <Scroll onPullDown={handlePullDown} onPullUp={handlePullUp}>
+        <Scroll
+          onScroll={forceCheck}
+          onPullDown={handlePullDown}
+          onPullUp={handlePullUp}
+          pullUpLoading={pullUpLoading}
+          pullDownLoading={pullDownLoading}
+        >
           <SingersList dataSource={singerList} />
         </Scroll>
       </ListContainer>
+      <Loading show={loading} />
     </SingersStyle>
   );
 };
