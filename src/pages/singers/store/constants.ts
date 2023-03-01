@@ -1,0 +1,6 @@
+export const CHANGE_SINGER_LIST = "singer/CHANGE_SINGER_LIST";
+export const CHANGE_COUNT = "singer/CHANGE_COUNT";
+export const CHANGE_LOADING = "singer/CHANGE_LOADING";
+export const CHANGE_PULL_UP_LOADING = "singer/CHANGE_PULL_UP_LOADING";
+export const CHANGE_SINGER_PULL_DOWN_LOADING =
+  "singer/CHANGE_SINGER_PULL_DOWN_LOADING";

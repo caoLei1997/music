@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "start:server": "cd NeteaseCloudMusicApi && cross-env PORT=8888 node app.js",
-    "start:react": "vite",
-    "start": "concurrently \"npm run start:server\" \"npm run start:react\"",
+    "start:client": "vite",
+    "start": "concurrently \"npm run start:server\" \"npm run start:client\"",
     "submodules": "cd NeteaseCloudMusicApi && concurrently \"npm install\"",
     "build": "tsc && vite build",
     "preview": "vite preview"

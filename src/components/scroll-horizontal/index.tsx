@@ -16,7 +16,7 @@ function Horizontal<DataType>(props: HorizontalProps<DataType>) {
   // 内层滚动dom
   const horizontalDom = useRef<any>()
   // 默认选中
-  const defaultValue = useMemo(() => currentValue || dataSource[0].key, [currentValue, dataSource])
+  // const defaultValue = useMemo(() => currentValue || dataSource[0].key, [currentValue, dataSource])
   // 内部dom按照生成list计算
   useEffect(() => {
     let dom = horizontalDom.current;
@@ -37,7 +37,7 @@ function Horizontal<DataType>(props: HorizontalProps<DataType>) {
               return (
                 <ListItemStyle
                   key={item.key}
-                  className={`${defaultValue === item.key ? 'selected' : ''}`}
+                  className={`${currentValue === item.key ? 'selected' : ''}`}
                   onClick={() => onClick(item.key)}
                 >
                   {item.name}

@@ -12,24 +12,30 @@ import { forceCheck } from "react-lazyload";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getBanner, getRecommendList } from "./store/action";
+import Loading from "@/components/loading";
 
 const Recommend = () => {
-
   const dispatch = useDispatch();
-  
-  useEffect(() => {
-    dispatch(getBanner());
-    dispatch(getRecommendList());
-  }, []);
-
-  const {bannerList,recommendList} = useSelector((state:any) => ({
+  // store 数据源
+  const { bannerList, recommendList, loading } = useSelector((state: any) => ({
     bannerList: state.getIn(["recommend", "bannerList"]),
     recommendList: state.getIn(["recommend", "recommendList"]),
+    loading: state.getIn(["recommend", "loading"]),
   }));
-  //banner data 
-  const bannerListJS = bannerList ? bannerList.toJS():[]
-  //recommend data 
-  const recommendListJS = recommendList ? recommendList.toJS():[]
+  
+  useEffect(() => {
+    if (!bannerList.size) {
+      dispatch(getBanner());
+    }
+    if (!recommendList.size) {
+      dispatch(getRecommendList());
+    }
+  }, []);
+
+  //banner data
+  const bannerListJS = bannerList ? bannerList.toJS() : [];
+  //recommend data
+  const recommendListJS = recommendList ? recommendList.toJS() : [];
 
   return (
     <RecommendStyle>
@@ -39,6 +45,7 @@ const Recommend = () => {
           <RecommendList dataSource={recommendListJS} />
         </div>
       </Scroll>
+      {loading ? <Loading /> : null}
     </RecommendStyle>
   );
 };

@@ -44,7 +44,7 @@ const Slider = (props: SliderProps) => {
           {
             dataSource.map((slider, index) => {
               return (
-                <div className="swiper-slide" key={index}>
+                <div className="swiper-slide" key={slider.imageUrl}>
                   <div className="slider-nav">
                     <img src={slider.imageUrl} width="100%" height="100%" alt="推荐" />
                   </div>

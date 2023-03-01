@@ -14,17 +14,25 @@ export const changeRecommendList = (data: RecommendListItem[]) => ({
   data: fromJS(data),
 });
 
+export const changeLoading = (data: boolean) => ({
+  type: actionTypes.CHANGE_LOADING,
+  data: fromJS(data),
+});
+
 export const getBanner = (): any => {
   return (dispatch: Dispatch) => {
     requestBanner()
-      .then((data) => dispatch(changeBanner(data.banners)))
+      .then((data) => {
+        dispatch(changeBanner(data.banners));
+        dispatch(changeLoading(false));
+      })
       .catch(() => {
         console.log("轮播图数据传输错误");
       });
   };
 };
 
-export const getRecommendList = ():any => {
+export const getRecommendList = (): any => {
   return (dispatch: Dispatch) => {
     requestRecommendList()
       .then((data) => dispatch(changeRecommendList(data.result)))
