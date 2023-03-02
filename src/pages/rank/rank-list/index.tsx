@@ -13,13 +13,16 @@ const RankList = (props: RankListProps) => {
     <RankListStyle styleFlex={line}>
       {dataSource.map((item, index) => {
         return (
-          <ListItemStyle key={item.coverImgId +'-'+ index} tracks={item.tracks}>
+          <ListItemStyle
+            key={item.coverImgId + "-" + index}
+            tracks={item.tracks}
+          >
             <div className="img-wrapper">
               <img src={item.coverImgUrl} alt="排行榜" />
               <div className="decorate"></div>
               <span className="update-frequency">{item.updateFrequency}</span>
             </div>
-            {Array.isArray(item.tracks) ? (
+            {item.tracks && item.tracks.length ? (
               <SongList dataSource={item.tracks} />
             ) : null}
           </ListItemStyle>
