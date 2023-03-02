@@ -8,10 +8,10 @@ export interface BannerListItem {
 }
 
 export interface RecommendListItem {
-  id?: number,
-  picUrl?: string;
-  name?: string
-  playCount?: number;
+  id: number,
+  picUrl: string;
+  name: string
+  playCount: number;
   type?:number;
   [key:string]:any
 }

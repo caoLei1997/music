@@ -2,10 +2,10 @@ import { memo } from "react";
 import { LoadingStyled } from "./style";
 
 interface LoadingProps {
-  show: boolean;
+  show?: boolean;
 }
 const Loading = (props: LoadingProps) => {
-  const {show} = props
+  const { show = true } = props;
   return (
     <LoadingStyled style={show ? { display: "" } : { display: "none" }}>
       <div></div>

@@ -10,10 +10,9 @@ export const requestBanner = () => {
 };
 // 推荐歌单列表
 export const requestRecommendList = () => {
-  return axiosInstance.get<any, { result: RecommendListItem[] }>(
-    "/personalized"
-  );
+  return axiosInstance.get<any, { result: RecommendListItem[] }>("/personalized");
 };
+
 // **--歌手--**
 // 热门歌手列表
 export const requestHotSingersList = (count: number) => {
@@ -28,3 +27,10 @@ export const requestSingersList = (singerListParams?: SingerListParams) => {
     `/artist/list?type=${type}&area=${area}&initial=${alpha.toLowerCase()}&offset=${count}`
   );
 };
+
+// **--排行榜--**
+// 排行榜列表
+export const requestRankList = ()=>{
+  return axiosInstance.get('toplist/detail')
+}
+
