@@ -1,5 +1,5 @@
 import { CSSTransition } from "react-transition-group";
-import { memo, useEffect, useRef, useState } from "react";
+import { memo, useCallback, useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { AlbumStyled } from "./style";
 import Header from "@/components/header";
@@ -32,7 +32,7 @@ const Album = () => {
   }, []);
   // 动画进入离开状态
   const [showState, setShowState] = useState<boolean>(true);
-  const handleBack = () => setShowState(false);
+  const handleBack = useCallback(() => setShowState(false), []);
   // 兼容 react 严格模式 CSSTransition 报错
   const transitionRef = useRef<any>();
   // header title
@@ -42,7 +42,7 @@ const Album = () => {
   // 跑马灯
   const [isMarquee, setIsMarquee] = useState(false);
   // onScroll
-  const handleScroll = (pos: any) => {
+  const handleScroll = useCallback((pos: any) => {
     let minScrollY = -HEADER_HEIGHT;
     let percent = Math.abs(pos.y / minScrollY);
     let headerDom: HTMLDivElement = headerRef?.current as any;
@@ -58,7 +58,7 @@ const Album = () => {
       setTitle("歌单");
       setIsMarquee(false);
     }
-  };
+  }, []);
   return (
     <CSSTransition
       in={showState}
