@@ -1,17 +1,18 @@
 import { CSSTransition } from "react-transition-group";
 import { memo, useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router";
-import { AlbumStyled, MenuStyle, TopStyle } from "./style";
+import { AlbumStyled } from "./style";
 import Header from "@/components/header";
-import { AlbumData } from "./interface";
 import Scroll from "@/components/scroll";
-import { getCount, isEmptyObject } from "@/utils";
+import { isEmptyObject } from "@/utils";
 import SongList from "./song-list";
 import { HEADER_HEIGHT } from "./constant";
 import global from "@/assets/style/global-style";
 import { useDispatch, useSelector } from "react-redux";
 import { changeLoading, getAlbumData } from "./store/action";
 import Loading from "@/components/loading";
+import Top from "./top";
+import Menu from "./menu";
 
 const Album = () => {
   // router api
@@ -20,17 +21,15 @@ const Album = () => {
   // dispatch
   const dispatch = useDispatch();
   // store 数据源
-
   const { albumData, loading } = useSelector((state: any) => ({
     albumData: state.getIn(["album", "albumData"])?.toJS() || {},
     loading: state.getIn(["album", "loading"]),
   }));
-
+  // 请求歌单数据
   useEffect(() => {
     dispatch(changeLoading(true));
     dispatch(getAlbumData(Number(routerParams.id)));
   }, []);
-
   // 动画进入离开状态
   const [showState, setShowState] = useState<boolean>(true);
   const handleBack = () => setShowState(false);
@@ -86,48 +85,8 @@ const Album = () => {
             // bounceBottom={false}
           >
             <div>
-              <TopStyle background={albumData.coverImgUrl}>
-                <div className="background">
-                  <div className="filter"></div>
-                </div>
-                <div className="img-wrapper">
-                  <div className="decorate"></div>
-                  <img src={albumData.coverImgUrl} alt="歌单" />
-                  <div className="play-count">
-                    <i className="iconfont">&#xe885;</i>
-                    <span className="count">
-                      {getCount(albumData.subscribedCount)}
-                    </span>
-                  </div>
-                </div>
-                <div className="des-wrapper">
-                  <div className="title">{albumData.name}</div>
-                  <div className="person">
-                    <div className="avatar">
-                      <img src={albumData.creator.avatarUrl} alt="作者" />
-                    </div>
-                    <div className="name">{albumData.creator.nickname}</div>
-                  </div>
-                </div>
-              </TopStyle>
-              <MenuStyle>
-                <div>
-                  <i className="iconfont">&#xe6ad;</i>
-                  评论
-                </div>
-                <div>
-                  <i className="iconfont">&#xe86f;</i>
-                  点赞
-                </div>
-                <div>
-                  <i className="iconfont">&#xe62d;</i>
-                  收藏
-                </div>
-                <div>
-                  <i className="iconfont">&#xe606;</i>
-                  更多
-                </div>
-              </MenuStyle>
+              <Top />
+              <Menu />
               <SongList />
             </div>
           </Scroll>

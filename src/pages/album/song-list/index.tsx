@@ -4,9 +4,8 @@ import { Tracks } from "../interface";
 import { SongStyle, SongItemStyle } from "./style";
 
 const SongList = () => {
-  const { albumData, loading } = useSelector((state: any) => ({
+  const { albumData } = useSelector((state: any) => ({
     albumData: state.getIn(["album", "albumData"])?.toJS() || {},
-    loading: state.getIn(["album", "loading"]),
   }));
   // 歌曲列表
   const dataSource: Tracks[] = albumData?.tracks || [];
