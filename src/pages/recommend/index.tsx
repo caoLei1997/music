@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getBanner, getRecommendList } from "./store/action";
 import Loading from "@/components/loading";
+import { Outlet } from "react-router-dom";
 
 const Recommend = () => {
   const dispatch = useDispatch();
@@ -46,6 +47,7 @@ const Recommend = () => {
         </div>
       </Scroll>
       <Loading show={loading} />
+      <Outlet />
     </RecommendStyle>
   );
 };

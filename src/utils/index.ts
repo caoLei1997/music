@@ -1,3 +1,5 @@
+import { TrackCommon } from "@/pages/album/interface";
+
 export const emptyFunc = () => {};
 
 // 单位 万 亿 格式化数字
@@ -25,3 +27,17 @@ export const debounce = (func: () => void, delay: number) => {
     }, delay);
   };
 };
+
+// 处理歌手列表拼接歌手名字
+export const getName = (list: TrackCommon[]) => {
+  let str = "";
+  list.map((item, index) => {
+    str += index === 0 ? item.name : "/" + item.name;
+    return item;
+  });
+  return str;
+};
+
+// 对象判空
+export const isEmptyObject = (obj: any) =>
+  !obj || Object.keys(obj).length === 0;

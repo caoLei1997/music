@@ -15,6 +15,7 @@ export default defineConfig({
   ],
   // css
   css: {
+    // 增减不同浏览器前缀样式css
     postcss: {
       plugins: [
         autoprefixer({

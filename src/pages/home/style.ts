@@ -22,7 +22,6 @@ export const TabStyle = styled.div`
   height: 44px;
   background-color: ${global["theme-color"]};
   position: relative;
-  z-index: 99;
   a {
     flex: 1;
     padding: 2px 0;

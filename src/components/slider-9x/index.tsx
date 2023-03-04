@@ -30,7 +30,7 @@ const Slider9X = (props: SliderProps) => {
               spaceBetween={10}
               slidesPerView={1}
               autoplay={{
-                delay: 3000,
+                delay: 2000,
               }}
               pagination={{
                 el: '.swiper-pagination',

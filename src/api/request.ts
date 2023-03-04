@@ -1,3 +1,4 @@
+import { AlbumData } from "./../pages/album/interface";
 import { BannerListItem, RecommendListItem } from "@/pages/recommend/interface";
 import { SingerListParams } from "@/pages/singers/interface";
 import { categoryMap } from "./mock";
@@ -10,7 +11,9 @@ export const requestBanner = () => {
 };
 // 推荐歌单列表
 export const requestRecommendList = () => {
-  return axiosInstance.get<any, { result: RecommendListItem[] }>("/personalized");
+  return axiosInstance.get<any, { result: RecommendListItem[] }>(
+    "/personalized"
+  );
 };
 
 // **--歌手--**
@@ -30,7 +33,14 @@ export const requestSingersList = (singerListParams?: SingerListParams) => {
 
 // **--排行榜--**
 // 排行榜列表
-export const requestRankList = ()=>{
-  return axiosInstance.get('toplist/detail')
-}
+export const requestRankList = () => {
+  return axiosInstance.get("toplist/detail");
+};
 
+// **--歌单专辑--**
+// 专辑详情页
+export const requestAlbumDetail = (id: number) => {
+  return axiosInstance.get<any, { playlist: AlbumData }>(
+    `/playlist/detail?id=${id}`
+  );
+};

@@ -8,7 +8,7 @@ const TabBar = () => {
 
   return (
     <TabStyle>
-      <NavLink to='/' className={linkClass} end><span>推荐</span></NavLink>
+      <NavLink to='/recommend' className={linkClass} end><span>推荐</span></NavLink>
       <NavLink to='/singers' className={linkClass} ><span>歌手</span></NavLink>
       <NavLink to='/rank' className={linkClass} ><span>排行榜</span></NavLink>
     </TabStyle>
