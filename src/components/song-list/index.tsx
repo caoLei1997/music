@@ -1,16 +1,24 @@
 import { getCount, getName } from "@/utils";
-import { useSelector } from "react-redux";
-import { Tracks } from "../interface";
+import { DataSource } from "./interface";
 import { SongStyle, SongItemStyle } from "./style";
 
-const SongList = () => {
-  const { albumData } = useSelector((state: any) => ({
-    albumData: state.getIn(["album", "albumData"])?.toJS() || {},
-  }));
+interface SongListProps {
+  dataSource?: DataSource[];
+  collect?: boolean;
+  collectCount?: number;
+  showBackground?: boolean;
+}
+const SongList = (props: SongListProps) => {
   // 歌曲列表
-  const dataSource: Tracks[] = albumData?.tracks || [];
+  const {
+    dataSource = [],
+    collect = false,
+    collectCount = 0,
+    showBackground = true,
+  } = props;
+
   return (
-    <SongStyle>
+    <SongStyle showBackground={showBackground}>
       <div className="first-line">
         <div className="play-all">
           <i className="iconfont">&#xe6e3;</i>
@@ -19,12 +27,13 @@ const SongList = () => {
             <span className="sum">(共 {dataSource.length} 首)</span>
           </span>
         </div>
-        <div className="collect-list">
-          <i className="iconfont">&#xe62d;</i>
-          <span> 收藏 ({getCount(albumData.subscribedCount)})</span>
-        </div>
+        {collect ? (
+          <div className="collect-list">
+            <i className="iconfont">&#xe62d;</i>
+            <span> 收藏 ({getCount(collectCount)})</span>
+          </div>
+        ) : null}
       </div>
-
       <SongItemStyle>
         {dataSource.map((song, index) => {
           return (

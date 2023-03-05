@@ -1,16 +1,24 @@
 import { ListItemStyle, ListStyle } from "./style";
 import LazyLoad from "react-lazyload";
 import defaultImg from "@/assets/image/music.png";
+import { useNavigate } from "react-router";
 interface SingersListProps {
   dataSource: any[];
 }
 const SingersList = (props: SingersListProps) => {
+  // router api
+  const navigate = useNavigate();
+  // 数据源
   const { dataSource } = props;
+
+  const enterDetail = (id: string) => {
+    navigate(`/singers/${id}`);
+  };
   return (
     <ListStyle>
       {dataSource.map((item, index) => {
         return (
-          <ListItemStyle key={index}>
+          <ListItemStyle key={index} onClick={() => enterDetail(item.id)}>
             <div className="img-wrapper">
               <LazyLoad
                 placeholder={

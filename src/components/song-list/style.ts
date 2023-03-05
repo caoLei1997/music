@@ -1,11 +1,14 @@
 import styled from "styled-components";
 import global from "@/assets/style/global-style";
 
-export const SongStyle = styled.div`
+export const SongStyle = styled.div<{ showBackground: boolean }>`
   border-radius: 10px;
   opacity: 0.98;
   position: relative;
-  background: ${global["highlight-background-color"]};
+  ${(props) =>
+    props.showBackground
+      ? `background: ${global["highlight-background-color"]}`
+      : ""};
 
   .first-line {
     display: flex;

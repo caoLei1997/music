@@ -10,7 +10,7 @@ interface RecommendListProps {
 }
 
 const RecommendList = (props: RecommendListProps) => {
-  // 路由
+  // router api
   const navigate = useNavigate();
   const { dataSource } = props;
   const enterAlbum = (id: number) => {

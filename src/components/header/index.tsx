@@ -3,7 +3,7 @@ import { forwardRef } from "react";
 import { HeaderStyled } from "./style";
 
 interface HeaderProps {
-  onClick: () => void;
+  onClick?: () => void;
   title?: string;
   isMarquee?: boolean;
 }

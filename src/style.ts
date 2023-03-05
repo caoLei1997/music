@@ -1,4 +1,6 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
+import global from "@/assets/style/global-style";
+
 export const GlobalStyle = createGlobalStyle`
 	html, body, div, span, applet, object, iframe,
 	h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -29,7 +31,7 @@ export const GlobalStyle = createGlobalStyle`
 		line-height: 1;
 	}
 	html, body {
-		background: #f2f3f4;;
+		background: ${global['background-color']};
 	}
 	ol, ul {
 		list-style: none;

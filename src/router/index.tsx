@@ -9,6 +9,7 @@ import Singers from "@/pages/singers";
 import Rank from "@/pages/rank";
 // 专辑详情
 import Album from "@/pages/album";
+import SingersDetail from "@/pages/singers-detail";
 
 const router = createBrowserRouter([
   {
@@ -17,8 +18,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        // element:  <Navigate to="/recommend" />,
-        loader: async () => redirect("/recommend"),
+        element:  <Navigate to="/recommend" />,
       },
       {
         path: "/recommend",
@@ -33,16 +33,29 @@ const router = createBrowserRouter([
       {
         path: "/singers",
         element: <Singers />,
+        children: [
+          {
+            path: "/singers/:id",
+            element: <SingersDetail />,
+          },
+        ],
       },
       {
         path: "/rank",
         element: <Rank />,
+        children: [
+          {
+            path: "/rank/:id",
+            element: <Album />,
+          },
+        ],
       },
     ],
   },
-  {
-    path: "*",
-    element: <>404</>,
-  },
+  // {
+  //   path: "*",
+    
+  //   element: <>404</>,
+  // },
 ]);
 export default router;

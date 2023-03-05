@@ -17,6 +17,7 @@ import {
 } from "./store/action";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "@/components/loading";
+import { Outlet } from "react-router";
 
 const Singers = () => {
   const dispatch = useDispatch();
@@ -118,6 +119,7 @@ const Singers = () => {
         </Scroll>
       </ListContainer>
       <Loading show={loading} />
+      <Outlet/>
     </SingersStyle>
   );
 };

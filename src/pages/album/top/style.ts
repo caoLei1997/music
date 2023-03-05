@@ -93,7 +93,7 @@ export const TopStyle = styled.div<{ background: string }>`
       .name {
         line-height: 20px;
         font-size: ${global["font-size-m"]};
-        color: ${global["font-color-desc-v2"]};
+        color: ${global["font-color-light"]};
       }
     }
   }

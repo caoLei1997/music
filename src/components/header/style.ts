@@ -6,10 +6,10 @@ export const HeaderStyled = styled.div`
   padding: 5px 10px;
   height: 40px;
   width: 100%;
-  z-index: 100;
+  z-index: 900;
   display: flex;
   line-height: 40px;
-  color: ${global["font-color-light"]};
+  color: ${global["font-color-light-v2"]};
   .back {
     margin-right: 5px;
     font-size: 20px;

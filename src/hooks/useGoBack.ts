@@ -2,20 +2,18 @@ import { useNavigate } from "react-router";
 import { useCallback } from "react";
 
 interface UseGoBack {
-  (): any[];
+  (index?: number): any[];
 }
 
-const useGoBack: UseGoBack = () => {
+const useGoBack: UseGoBack = (index = -1) => {
   const navigate = useNavigate();
   const back = useCallback(() => {
-    console.log('window.history.state: ', window.history.state)
-
     if (window.history.state && window.history.state.idx > 0) {
-      navigate(-1);
+      navigate(index);
     } else {
       navigate("/", { replace: true });
     }
-  }, [window.history.state]);
+  }, [window.history.state, index]);
 
   return [back];
 };

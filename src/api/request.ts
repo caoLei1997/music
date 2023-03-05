@@ -21,7 +21,6 @@ export const requestRecommendList = () => {
 export const requestHotSingersList = (count: number) => {
   return axiosInstance.get<any, any>(`/top/artists?offset=${count}`);
 };
-
 // 歌手列表
 export const requestSingersList = (singerListParams?: SingerListParams) => {
   const { category = "", count = 0, alpha = "" } = singerListParams || {};
@@ -29,6 +28,10 @@ export const requestSingersList = (singerListParams?: SingerListParams) => {
   return axiosInstance.get<any, any>(
     `/artist/list?type=${type}&area=${area}&initial=${alpha.toLowerCase()}&offset=${count}`
   );
+};
+// 歌手详情
+export const requestSingersInfo = (id: string) => {
+  return axiosInstance.get<any, any>(`/artists?id=${id}`);
 };
 
 // **--排行榜--**

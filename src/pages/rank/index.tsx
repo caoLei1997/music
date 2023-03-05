@@ -2,6 +2,7 @@ import Loading from "@/components/loading";
 import Scroll from "@/components/scroll";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Outlet } from "react-router";
 import RankList from "./rank-list";
 import { getRankList } from "./store/action";
 import { EnterLoading, RankStyle } from "./style";
@@ -58,6 +59,7 @@ const Rank = () => {
           <Loading show={loading} />
         </EnterLoading>
       ) : null}
+      <Outlet />
     </RankStyle>
   );
 };

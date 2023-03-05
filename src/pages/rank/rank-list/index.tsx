@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import SongList from "../song-list";
 import { ListItemStyle, RankListStyle } from "./style";
 
@@ -9,6 +10,11 @@ interface RankListProps {
 }
 const RankList = (props: RankListProps) => {
   const { dataSource = [], line = false } = props;
+  // router api
+  const navigate = useNavigate();
+  const enterAlbum = (id: number) => {
+    navigate(`/rank/${id}`);
+  };
   return (
     <RankListStyle styleFlex={line}>
       {dataSource.map((item, index) => {
@@ -16,6 +22,7 @@ const RankList = (props: RankListProps) => {
           <ListItemStyle
             key={item.coverImgId + "-" + index}
             tracks={item.tracks}
+            onClick={() => enterAlbum(item.id)}
           >
             <div className="img-wrapper">
               <img src={item.coverImgUrl} alt="排行榜" />
