@@ -2,7 +2,7 @@ import { AlbumData } from "./../interface";
 import { requestAlbumDetail } from "@/api/request";
 import { ActionType } from "@/store/reducer";
 import { Dispatch } from "redux";
-import * as actionTypes from "./constant";
+import * as actionTypes from "./constants";
 import { fromJS } from "immutable";
 
 type ChangeAlbumData = (data: AlbumData) => ActionType;

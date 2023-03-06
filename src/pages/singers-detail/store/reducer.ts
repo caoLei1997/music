@@ -1,6 +1,6 @@
 import { ActionType } from "@/store/reducer";
 import { FromJS, fromJS } from "immutable";
-import * as actionsType from "./constant";
+import * as actionsType from "./constants";
 
 interface DefaultState {
   artist: any;

@@ -7,7 +7,7 @@ import { memo, useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { CSSTransition } from "react-transition-group";
-import { HEADER_HEIGHT } from "../album/constant";
+import { HEADER_HEIGHT } from "../album/constants";
 import { changeSingersLoading, getSingersInfo } from "./store/action";
 import {
   BgLayerStyle,

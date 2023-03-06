@@ -6,7 +6,7 @@ import Header from "@/components/header";
 import Scroll from "@/components/scroll";
 import { isEmptyObject } from "@/utils";
 import SongList from "@/components/song-list";
-import { HEADER_HEIGHT } from "./constant";
+import { HEADER_HEIGHT } from "./constants";
 import global from "@/assets/style/global-style";
 import { useDispatch, useSelector } from "react-redux";
 import { changeLoading, getAlbumData } from "./store/action";

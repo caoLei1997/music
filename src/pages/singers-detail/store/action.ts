@@ -2,7 +2,7 @@ import { requestSingersInfo } from "@/api/request";
 import { ActionType } from "@/store/reducer";
 import { fromJS } from "immutable";
 import { Dispatch } from "redux";
-import * as actionsType from "./constant";
+import * as actionsType from "./constants";
 
 export const changeSingersArtist = (data: any): ActionType => ({
   type: actionsType.CHANGE_SINGERS_DETAIL_ARTIST,

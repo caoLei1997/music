@@ -1,7 +1,7 @@
 import { ActionType } from "@/store/reducer";
 import { fromJS } from "immutable";
 import { AlbumData } from "../interface";
-import * as actionTypes from "./constant";
+import * as actionTypes from "./constants";
 
 interface DefaultState {
   albumData: AlbumData | unknown;
