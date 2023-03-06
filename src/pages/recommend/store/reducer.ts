@@ -14,6 +14,7 @@ const defaultState = fromJS<RecommendState>({
   loading: true,
 });
 
+
 export default (state = defaultState, action: ActionType) => {
   switch (action.type) {
     case actionTypes.CHANGE_BANNER:
