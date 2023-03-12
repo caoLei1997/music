@@ -1,7 +1,4 @@
 // declare function useGoBack(): any;
 
 
-declare namespace marquee {
-  
-
-}
+declare module 'create-keyframe-animation'

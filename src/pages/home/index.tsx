@@ -5,7 +5,6 @@ import TabBar from "./tab-bar";
 const Home = () => {
   return (
     <>
-  
       <Header />
       <TabBar />
       <Outlet />
