@@ -26,6 +26,7 @@ const Progress = (props: ProgressProps) => {
     progress.current.style.width = `${offsetWidth}px`;
     progressBtn.current.style.transform = `translate3d(${offsetWidth}px,0,0)`;
   };
+  // 滑动开始
   const progressTouchStart = (e: any) => {
     let startTouch: Touch = {
       initiated: false,
@@ -37,7 +38,7 @@ const Progress = (props: ProgressProps) => {
     startTouch.left = progress.current.clientWidth; // 当前 progress 长度
     setTouch(startTouch);
   };
-
+  // 滑动
   const progressTouchMove = (e: any) => {
     if (!touch?.initiated) return;
 
@@ -51,7 +52,7 @@ const Progress = (props: ProgressProps) => {
     );
     offset(offsetWidth);
   };
-
+  // 滑动完成
   const progressTouchEnd = (e: any) => {
     const endTouch = JSON.parse(JSON.stringify(touch));
     endTouch.initiated = false;
