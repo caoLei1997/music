@@ -1,6 +1,6 @@
 import ProgressCircle from "@/components/progress-circle";
 import { getName } from "@/utils";
-import { memo, useRef } from "react";
+import React, { memo, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { CSSTransition } from "react-transition-group";
 import { PlayerProps } from "../interface";
@@ -10,7 +10,8 @@ import { MiniStyle } from "./style";
 const MiniPlayer = (props: PlayerProps) => {
   // action
   const dispatch = useDispatch();
-  const { song, fullScreen } = props;
+  const { song, fullScreen, playing, percent = 0.2 } = props;
+  const { clickPlaying = ()=>{} } = props;
 
   // 兼容严格模式
   const miniRef = useRef<any>();
@@ -22,7 +23,6 @@ const MiniPlayer = (props: PlayerProps) => {
     miniRef.current.style.display = "none";
   };
 
-  let percent = 0.2;
   return (
     <CSSTransition
       nodeRef={miniRef}
@@ -36,7 +36,7 @@ const MiniPlayer = (props: PlayerProps) => {
         <div className="icon">
           <div className="imgWrapper">
             <img
-              className="play"
+              className={`play ${playing ? "" : "pause"}`}
               src={song.al.picUrl}
               width="40"
               height="40"
@@ -50,7 +50,11 @@ const MiniPlayer = (props: PlayerProps) => {
         </div>
         <div className="control">
           <ProgressCircle radius={32} percent={percent}>
-            <i className="icon-mini iconfont icon-pause">&#xe650;</i>
+            {playing ? (
+              <i className="icon-mini iconfont icon-play" onClick={e=> clickPlaying(e,false)}>&#xe650;</i>
+            ) : (
+              <i className="icon-mini iconfont icon-play" onClick={e=> clickPlaying(e,true)}>&#xe61e;</i>
+            )}
           </ProgressCircle>
         </div>
         <div className="control">
